@@ -8,12 +8,11 @@ on:
       - 'src/**'
       - 'WAProto/**'
       - 'engine-requirements.js'
-      - '.github/workflows/npm-publish.yml'
   workflow_dispatch:
 
 concurrency:
   group: npm-publish
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   publish:
