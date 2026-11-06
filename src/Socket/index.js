@@ -23,7 +23,7 @@ const showArrivalBanner = () => {
         console.log(chalk.gray('  ────────────────────────────────────'));
         console.log(chalk.magentaBright('  Thankyou for using this baileys'));
         console.log(chalk.redBright('  Developer  : ') + chalk.whiteBright('Marchel Tech'));
-        console.log(chalk.greenBright('  Contact    : ') + chalk.whiteBright('+44 7536 649895'));
+        console.log(chalk.greenBright('  Contact    : ') + chalk.whiteBright('t.me.MarchelTech'));
         console.log(chalk.gray('────────────────────────────────────────\\n'));
     };
 
