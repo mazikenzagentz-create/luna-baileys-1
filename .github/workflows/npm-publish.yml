@@ -1,4 +1,4 @@
-name: Publish to npm
+name: Publish @nerxa/socketon to npm
 
 on:
   push:
@@ -23,47 +23,27 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           registry-url: 'https://registry.npmjs.org'
-
-      - name: Install deps
+      - name: Install dependencies
         run: npm install --ignore-scripts
-
-      - name: Package info
-        id: pkg
+      - name: Calculate next patch version
+        id: version
+        shell: bash
         run: |
           NAME=$(node -p "require('./package.json').name")
-          VER=$(node -p "require('./package.json').version")
-          echo "name=$NAME" >> $GITHUB_OUTPUT
-          echo "version=$VER" >> $GITHUB_OUTPUT
-          echo "Publishing $NAME@$VER"
-
-      - name: Check if version already on npm
-        id: check
-        run: |
-          if npm view "${{ steps.pkg.outputs.name }}@${{ steps.pkg.outputs.version }}" version 2>/dev/null; then
-            echo "exists=true" >> $GITHUB_OUTPUT
-            echo "Version already published — skip"
-          else
-            echo "exists=false" >> $GITHUB_OUTPUT
-            echo "Version not on npm — will publish"
-          fi
-
-      - name: Publish to npm
-        if: steps.check.outputs.exists != 'true'
+          CURRENT=$(npm view "$NAME" version 2>/dev/null || node -p "require('./package.json').version")
+          NEXT=$(node -e "const [a,b,c]=process.argv[1].split('.').map(Number); console.log([a,b,c+1].join('.'))" "$CURRENT")
+          npm pkg set version="$NEXT"
+          echo "name=$NAME" >> "$GITHUB_OUTPUT"
+          echo "version=$NEXT" >> "$GITHUB_OUTPUT"
+          echo "Publishing $NAME@$NEXT"
+      - name: Publish package
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Done
-        run: |
-          if [ "${{ steps.check.outputs.exists }}" = "true" ]; then
-            echo "Skipped — ${{ steps.pkg.outputs.name }}@${{ steps.pkg.outputs.version }} already on npm"
-          else
-            echo "Published ${{ steps.pkg.outputs.name }}@${{ steps.pkg.outputs.version }}"
-            echo "https://www.npmjs.com/package/${{ steps.pkg.outputs.name }}"
-          fi
+      - name: Publish summary
+        run: echo "Published ${{ steps.version.outputs.name }}@${{ steps.version.outputs.version }}"
