@@ -66,7 +66,8 @@
     "p-queue": "^9.1.0",
     "pino": "^9.6.0",
     "protobufjs": "^7.5.6",
-    "ws": "^8.19.0"
+    "ws": "^8.19.0",
+    "chalk": "^5.6.2"
   },
   "optionalDependencies": {
     "@rexxhayanasi/elaina-anchorguard": "^1.0.0"
@@ -86,17 +87,41 @@
     "sharp": "^0.35.0"
   },
   "peerDependenciesMeta": {
-    "@napi-rs/image": { "optional": true },
-    "@nekodb/client": { "optional": true },
-    "audio-decode": { "optional": true },
-    "better-sqlite3": { "optional": true },
-    "fluent-ffmpeg": { "optional": true },
-    "ioredis": { "optional": true },
-    "jimp": { "optional": true },
-    "link-preview-js": { "optional": true },
-    "mongodb": { "optional": true },
-    "mysql2": { "optional": true },
-    "pg": { "optional": true },
-    "sharp": { "optional": true }
+    "@napi-rs/image": {
+      "optional": true
+    },
+    "@nekodb/client": {
+      "optional": true
+    },
+    "audio-decode": {
+      "optional": true
+    },
+    "better-sqlite3": {
+      "optional": true
+    },
+    "fluent-ffmpeg": {
+      "optional": true
+    },
+    "ioredis": {
+      "optional": true
+    },
+    "jimp": {
+      "optional": true
+    },
+    "link-preview-js": {
+      "optional": true
+    },
+    "mongodb": {
+      "optional": true
+    },
+    "mysql2": {
+      "optional": true
+    },
+    "pg": {
+      "optional": true
+    },
+    "sharp": {
+      "optional": true
+    }
   }
 }
