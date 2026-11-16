@@ -454,3 +454,203 @@ nav svg, header svg, .navbar svg, [class*="NavigationBar"] svg {
         border-radius: 13px !important;
     }
 }
+
+
+/* =========================================================
+   WANZY NERXA NIGHT OVERRIDE — broad Tailwind palette reset
+   Loaded after Tailwind from App.tsx. Preserve layout/handlers.
+   ========================================================= */
+:root {
+  color-scheme: dark !important;
+  --wanzy-night: #080910;
+  --wanzy-night-2: #0d1020;
+  --wanzy-surface: #121629;
+  --wanzy-surface-2: #191d33;
+  --wanzy-border: rgba(167,139,250,.22);
+  --wanzy-violet: #a78bfa;
+  --wanzy-fuchsia: #e879f9;
+  --wanzy-cyan: #67e8f9;
+  --wanzy-text: #f4f1ff;
+  --wanzy-muted: #aaa7c0;
+}
+html, body, #app, #app > div, #app > div > div,
+#root, main, [role="main"] {
+  background-color: var(--wanzy-night) !important;
+  color: var(--wanzy-text) !important;
+}
+body {
+  background-image:
+    radial-gradient(ellipse at 12% 0%, rgba(124,58,237,.17), transparent 36%),
+    radial-gradient(ellipse at 90% 15%, rgba(34,211,238,.07), transparent 30%) !important;
+  background-attachment: fixed !important;
+}
+
+/* Navigation: cover Pterodactyl's Tailwind header and its child bars. */
+#app header, #app nav, #app [role="navigation"],
+#app header > div, #app nav > div,
+#app [class*="NavigationBar"], #app [class*="navigation-bar"] {
+  background: rgba(12,14,25,.98) !important;
+  background-color: #0d1020 !important;
+  color: var(--wanzy-text) !important;
+  border-color: var(--wanzy-border) !important;
+  box-shadow: 0 8px 30px rgba(0,0,0,.32) !important;
+}
+#app header a, #app nav a, #app [role="navigation"] a,
+#app header button, #app nav button {
+  color: #c8c0e4 !important;
+}
+#app header svg, #app nav svg { color: #c4b5fd !important; }
+
+/* Catch actual Tailwind utility classes, including arbitrary colors
+   such as bg-[#3e4a56] used by stock server cards. */
+#app [class*="bg-"] {
+  background-color: #14182a !important;
+  color: var(--wanzy-text) !important;
+}
+#app [class*="bg-"][class*="rounded"],
+#app [class*="bg-"][class*="shadow"],
+#app [class*="bg-"][class*="border"] {
+  border-color: var(--wanzy-border) !important;
+}
+#app [class*="bg-gray-"], #app [class*="bg-slate-"],
+#app [class*="bg-neutral-"], #app [class*="bg-zinc-"],
+#app [class*="bg-stone-"], #app [class*="bg-[#"] {
+  background: linear-gradient(135deg,#191d32 0%,#101424 100%) !important;
+  color: #f4f1ff !important;
+}
+#app [class*="hover:bg-"]:hover {
+  background-color: #24203b !important;
+}
+#app [class*="text-gray-"], #app [class*="text-slate-"],
+#app [class*="text-neutral-"], #app [class*="text-zinc-"],
+#app [class*="text-stone-"] {
+  color: #aaa7c0 !important;
+}
+#app [class*="text-white"], #app [class*="text-gray-100"],
+#app [class*="text-gray-200"], #app [class*="text-slate-100"],
+#app [class*="text-neutral-100"], #app [class*="text-neutral-200"] {
+  color: #f4f1ff !important;
+}
+#app [class*="border-gray-"], #app [class*="border-slate-"],
+#app [class*="border-neutral-"], #app [class*="border-zinc-"],
+#app [class*="border-stone-"] {
+  border-color: rgba(167,139,250,.2) !important;
+}
+
+/* Server list cards: force dark even if their background is arbitrary hex. */
+#app a[class*="rounded"], #app a[class*="group"],
+#app [class*="ServerRow"], #app [class*="server-row"] {
+  color: #f4f1ff !important;
+}
+#app a[class*="rounded"][class*="bg-"],
+#app a[class*="group"][class*="bg-"] {
+  background: linear-gradient(120deg,#1a1e34,#101424) !important;
+  border: 1px solid rgba(167,139,250,.24) !important;
+  border-radius: 15px !important;
+  box-shadow: 0 12px 28px rgba(0,0,0,.25) !important;
+}
+
+/* Tabs, breadcrumbs and server sub-navigation. */
+#app [role="tablist"], #app [role="tab"],
+#app [class*="Tabs"], #app [class*="tabs"],
+#app [class*="SubNavigation"], #app [class*="sub-navigation"] {
+  background: #0e1221 !important;
+  color: #bcb5d2 !important;
+  border-color: var(--wanzy-border) !important;
+}
+#app [role="tab"][aria-selected="true"],
+#app [aria-current="page"] {
+  color: #e9d5ff !important;
+  border-color: #a78bfa !important;
+  box-shadow: inset 0 -2px #a78bfa !important;
+}
+
+/* Buttons: reset stock blue/gray fills; then apply semantic colors. */
+#app button, #app [role="button"] {
+  color: #f4f1ff !important;
+  border-color: rgba(167,139,250,.25) !important;
+  border-radius: 10px !important;
+}
+#app button[class*="bg-"], #app [role="button"][class*="bg-"] {
+  background: linear-gradient(110deg,#29213f,#211a35) !important;
+}
+#app button[class*="bg-blue"], #app button[class*="bg-primary"],
+#app button[class*="bg-indigo"] {
+  background: linear-gradient(110deg,#7251c7,#a34bc7) !important;
+}
+#app button[class*="bg-green"], #app button[class*="bg-emerald"] {
+  background: linear-gradient(110deg,#087d68,#159b83) !important;
+}
+#app button[class*="bg-red"], #app button[class*="bg-rose"] {
+  background: linear-gradient(110deg,#9d315c,#cf4774) !important;
+}
+#app button[class*="bg-yellow"], #app button[class*="bg-amber"] {
+  background: linear-gradient(110deg,#7355b7,#9b70e8) !important;
+}
+
+/* Form controls and command input. */
+#app input, #app textarea, #app select,
+#app [role="combobox"], #app [contenteditable="true"] {
+  color: #f4f1ff !important;
+  background: #0d1120 !important;
+  border: 1px solid rgba(167,139,250,.28) !important;
+  border-radius: 10px !important;
+}
+#app input::placeholder, #app textarea::placeholder {
+  color: #77758f !important;
+}
+#app input:focus, #app textarea:focus, #app select:focus {
+  border-color: #67e8f9 !important;
+  box-shadow: 0 0 0 3px rgba(103,232,249,.1) !important;
+}
+
+/* Console, file editor, tables, menus and resource meters. */
+#app .xterm, #app .xterm-screen, #app .xterm-viewport,
+#app .CodeMirror, #app .monaco-editor {
+  background: #080b14 !important;
+}
+#app .xterm {
+  border: 1px solid rgba(103,232,249,.2) !important;
+  border-radius: 13px !important;
+}
+#app table, #app th, #app td { border-color: rgba(167,139,250,.16) !important; }
+#app thead, #app th { background: #19172d !important; color: #d8c7ff !important; }
+#app tbody tr, #app tbody tr:nth-child(even) { background: #111526 !important; }
+#app tbody tr:hover { background: #211d39 !important; }
+#app [role="dialog"], #app [role="menu"],
+#app [data-radix-popper-content-wrapper] > div {
+  color: #f4f1ff !important;
+  background: #15182a !important;
+  border: 1px solid var(--wanzy-border) !important;
+}
+#app [role="progressbar"], #app .progress {
+  background: #29233f !important;
+  border-radius: 99px !important;
+  overflow: hidden;
+}
+#app [role="progressbar"] > div, #app .progress-bar {
+  background: linear-gradient(90deg,#8058dc,#d946ef 55%,#67e8f9) !important;
+}
+
+/* Replace visible Pterodactyl branding in navbar only. */
+#app .navbar-brand, #app header a:first-child {
+  color: transparent !important;
+}
+#app .navbar-brand::after, #app header a:first-child::after {
+  content: "WANZY OFFICIAL";
+  display: inline-block;
+  font-size: 21px;
+  font-weight: 900;
+  letter-spacing: -.04em;
+  background: linear-gradient(100deg,#fff,#c4b5fd 55%,#67e8f9);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#app ::-webkit-scrollbar { width: 8px; height: 8px; }
+#app ::-webkit-scrollbar-track { background: #090a12; }
+#app ::-webkit-scrollbar-thumb { background: #44345f; border-radius: 99px; }
+@media (max-width: 700px) {
+  #app header, #app nav { background-color: #0b0e1b !important; }
+  #app a[class*="rounded"][class*="bg-"] { border-radius: 13px !important; }
+}
