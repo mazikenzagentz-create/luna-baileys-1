@@ -34,6 +34,7 @@ rollback(){
   cp -a "$BACKUP_DIR/DashboardContainer.tsx" "$PANEL_DIR/resources/scripts/components/dashboard/DashboardContainer.tsx"
   if [[ -f "$BACKUP_DIR/wanzy-official.css" ]]; then cp -a "$BACKUP_DIR/wanzy-official.css" "$PANEL_DIR/resources/scripts/assets/wanzy-official.css"; else rm -f "$PANEL_DIR/resources/scripts/assets/wanzy-official.css"; fi
   if [[ -f "$BACKUP_DIR/WanzyHomeHero.tsx" ]]; then cp -a "$BACKUP_DIR/WanzyHomeHero.tsx" "$PANEL_DIR/resources/scripts/components/dashboard/WanzyHomeHero.tsx"; else rm -f "$PANEL_DIR/resources/scripts/components/dashboard/WanzyHomeHero.tsx"; fi
+  if [[ -d "$BACKUP_DIR/public-assets" ]]; then rm -rf "$PANEL_DIR/public/assets"; cp -a "$BACKUP_DIR/public-assets" "$PANEL_DIR/public/assets"; fi
 }
 main(){
   [[ "$EUID" == 0 ]] || die "Jalankan sebagai root."
@@ -56,6 +57,7 @@ main(){
   mkdir -p "$BACKUP_DIR"
   cp -a "$PANEL_DIR/resources/scripts/components/App.tsx" "$BACKUP_DIR/App.tsx"
   cp -a "$PANEL_DIR/resources/scripts/components/dashboard/DashboardContainer.tsx" "$BACKUP_DIR/DashboardContainer.tsx"
+  [[ ! -d "$PANEL_DIR/public/assets" ]] || cp -a "$PANEL_DIR/public/assets" "$BACKUP_DIR/public-assets"
   [[ ! -f "$PANEL_DIR/resources/scripts/assets/wanzy-official.css" ]] || cp -a "$PANEL_DIR/resources/scripts/assets/wanzy-official.css" "$BACKUP_DIR/wanzy-official.css"
   [[ ! -f "$PANEL_DIR/resources/scripts/components/dashboard/WanzyHomeHero.tsx" ]] || cp -a "$PANEL_DIR/resources/scripts/components/dashboard/WanzyHomeHero.tsx" "$BACKUP_DIR/WanzyHomeHero.tsx"
   for file in WanzyHomeHero.tsx wanzy-official.css; do
@@ -104,6 +106,7 @@ PY
     die "Build gagal. File sumber dikembalikan. Backup: $BACKUP_DIR"
   fi
   chown www-data:www-data "$PANEL_DIR/resources/scripts/assets/wanzy-official.css" "$PANEL_DIR/resources/scripts/components/dashboard/WanzyHomeHero.tsx"
+  chown -R www-data:www-data "$PANEL_DIR/public/assets"
   php artisan view:clear
   php artisan config:clear
   ok "WANZY OFFICIAL berhasil dipasang."
