@@ -86,3 +86,154 @@ hr { border-color: var(--wanzy-border); }
 @media (prefers-reduced-motion: reduce) {
     .wanzy-hero:before, .wanzy-orb-glow, .wanzy-crystal, .wanzy-star { animation: none !important; }
 }
+
+
+/* =========================================================
+   WANZY SERVER SPACE — server/container page redesign layer
+   Keeps Pterodactyl actions and routes intact; visual layer only.
+   ========================================================= */
+:root {
+    --wanzy-panel: #0c0e16;
+    --wanzy-panel-raised: #141725;
+    --wanzy-panel-soft: #1a1e30;
+    --wanzy-line: rgba(174, 153, 255, .17);
+    --wanzy-cyan-glow: rgba(34, 211, 238, .18);
+}
+body:has(.xterm), body:has([class*="ServerConsole"]) {
+    background-color: #07080d !important;
+}
+.navbar, nav.navbar, header nav {
+    background: rgba(13, 15, 25, .94) !important;
+    border-bottom: 1px solid var(--wanzy-line) !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,.28) !important;
+    backdrop-filter: blur(18px);
+}
+.navbar-brand, .navbar a, nav a {
+    transition: color .18s ease, background .18s ease, border-color .18s ease;
+}
+.navbar-brand {
+    color: #f5f3ff !important;
+    font-weight: 850 !important;
+    letter-spacing: -.035em;
+}
+.navbar-brand img { filter: drop-shadow(0 0 10px rgba(167,139,250,.22)); }
+
+/* Server navigation tabs */
+.server-tabs, [role="tablist"] {
+    background: rgba(13, 15, 25, .96) !important;
+    border-bottom: 1px solid var(--wanzy-line) !important;
+}
+.server-tabs a, [role="tablist"] a, [role="tablist"] button {
+    color: #9293aa !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-bottom: 2px solid transparent !important;
+    transition: color .18s ease, border-color .18s ease, background .18s ease;
+}
+.server-tabs a:hover, [role="tablist"] a:hover, [role="tablist"] button:hover {
+    color: #e9ddff !important;
+    background: rgba(167,139,250,.06) !important;
+}
+.server-tabs a.active, [role="tablist"] [aria-selected="true"] {
+    color: #d8c7ff !important;
+    border-bottom-color: #b58aff !important;
+    text-shadow: 0 0 18px rgba(167,139,250,.28);
+}
+
+/* Replace flat gray panels with layered glass surfaces */
+.content-box, .bg-neutral-700, .bg-neutral-800, .bg-gray-700, .bg-gray-800,
+[class*="ServerDetailsBlock"], [class*="ServerConsoleContainer"] {
+    background: linear-gradient(145deg, rgba(23,26,42,.96), rgba(13,15,25,.98)) !important;
+    border: 1px solid var(--wanzy-line) !important;
+    border-radius: 15px !important;
+    box-shadow: 0 14px 36px rgba(0,0,0,.2), inset 0 1px rgba(255,255,255,.025) !important;
+}
+.bg-neutral-700, .bg-gray-700 { color: #e8e5f2 !important; }
+.text-neutral-400, .text-gray-400 { color: #9998ae !important; }
+
+/* Server power controls */
+button, .btn {
+    border-radius: 10px !important;
+    font-weight: 750 !important;
+    transition: transform .16s ease, filter .16s ease, box-shadow .16s ease !important;
+}
+button:hover, .btn:hover {
+    filter: brightness(1.12);
+    transform: translateY(-1px);
+}
+button:focus-visible, a:focus-visible, input:focus-visible {
+    outline: 2px solid rgba(103,232,249,.8) !important;
+    outline-offset: 3px;
+}
+button[class*="green"], .btn-success, button[aria-label*="Start"] {
+    background: linear-gradient(110deg,#087f68,#16a085) !important;
+    border-color: rgba(110,231,183,.35) !important;
+    box-shadow: 0 8px 22px rgba(16,185,129,.12);
+}
+button[class*="red"], .btn-danger, button[aria-label*="Stop"] {
+    background: linear-gradient(110deg,#a93259,#d34d72) !important;
+    border-color: rgba(244,114,182,.25) !important;
+}
+button[class*="yellow"], .btn-warning {
+    background: linear-gradient(110deg,#7355b7,#9b70e8) !important;
+    border-color: rgba(196,181,253,.3) !important;
+}
+
+/* Console window: terminal becomes a framed control surface */
+.xterm, .xterm-screen, .xterm-viewport {
+    background: #080b12 !important;
+}
+.xterm {
+    padding: 12px !important;
+    border: 1px solid rgba(103,232,249,.16) !important;
+    border-radius: 13px !important;
+    box-shadow: inset 0 0 36px rgba(34,211,238,.035), 0 12px 34px rgba(0,0,0,.28) !important;
+}
+.xterm .xterm-viewport { scrollbar-color: #51416e #0b0d15; }
+input[placeholder*="command"], input[placeholder*="Command"],
+textarea[placeholder*="command"], textarea[placeholder*="Command"] {
+    min-height: 48px !important;
+    padding: 12px 16px !important;
+    border-radius: 11px !important;
+    background: #111522 !important;
+    border: 1px solid rgba(167,139,250,.24) !important;
+    color: #f5f3ff !important;
+    box-shadow: inset 0 1px rgba(255,255,255,.025);
+}
+input[placeholder*="command"]:focus, input[placeholder*="Command"]:focus {
+    border-color: rgba(103,232,249,.65) !important;
+    box-shadow: 0 0 0 3px rgba(34,211,238,.09) !important;
+}
+
+/* Usage meters and resource cards */
+.progress, [role="progressbar"] {
+    overflow: hidden;
+    border-radius: 99px !important;
+    background: #242238 !important;
+}
+.progress-bar, [role="progressbar"] > div {
+    border-radius: 99px !important;
+    background: linear-gradient(90deg,#8b5cf6,#d946ef 58%,#67e8f9) !important;
+    box-shadow: 0 0 14px rgba(167,139,250,.28);
+}
+
+/* Tables, file lists, database and schedule rows */
+table { border-color: var(--wanzy-line) !important; }
+thead, th { color: #c9b9f5 !important; background: rgba(167,139,250,.07) !important; }
+td, th { border-color: rgba(174,153,255,.11) !important; }
+tbody tr { background: rgba(17,19,31,.55) !important; }
+tbody tr:hover { background: rgba(139,92,246,.09) !important; }
+
+/* Avoid Pterodactyl's large gray cards on small screens */
+@media (max-width: 700px) {
+    .content-box, .bg-neutral-700, .bg-neutral-800, .bg-gray-700, .bg-gray-800,
+    [class*="ServerDetailsBlock"], [class*="ServerConsoleContainer"] {
+        border-radius: 12px !important;
+    }
+    .xterm { padding: 7px !important; border-radius: 10px !important; }
+    .server-tabs a, [role="tablist"] a, [role="tablist"] button {
+        font-size: 12px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+}
