@@ -237,3 +237,220 @@ tbody tr:hover { background: rgba(139,92,246,.09) !important; }
         padding-right: 10px !important;
     }
 }
+
+
+/* =========================================================
+   WANZY FULL SKIN v2 — replace Pterodactyl default palette
+   Scope: navigation, server cards, tabs, console, forms, tables.
+   ========================================================= */
+:root {
+    color-scheme: dark;
+    --wanzy-bg: #080910;
+    --wanzy-nav: #101321;
+    --wanzy-panel: #111525;
+    --wanzy-panel-2: #171b2d;
+    --wanzy-panel-3: #20243a;
+    --wanzy-purple: #a78bfa;
+    --wanzy-pink: #e879f9;
+    --wanzy-blue: #67e8f9;
+    --wanzy-green: #6ee7b7;
+    --wanzy-ink: #f5f3ff;
+    --wanzy-dim: #a3a1b8;
+    --wanzy-stroke: rgba(167,139,250,.2);
+}
+html, body, #app, #app > div, #root {
+    min-height: 100%;
+    background: #080910 !important;
+    color: var(--wanzy-ink) !important;
+}
+body {
+    background:
+      radial-gradient(ellipse at 12% 0%, rgba(124,58,237,.17), transparent 34%),
+      radial-gradient(ellipse at 95% 18%, rgba(34,211,238,.08), transparent 30%),
+      #080910 !important;
+    background-attachment: fixed !important;
+}
+
+/* Replace Pterodactyl wordmark while preserving the actual navbar link. */
+.navbar-brand, .NavigationBar a:first-child, [class*="NavigationBar"] a:first-child {
+    color: transparent !important;
+    font-size: 0 !important;
+    text-shadow: none !important;
+}
+.navbar-brand::after, .NavigationBar a:first-child::after, [class*="NavigationBar"] a:first-child::after {
+    content: "WANZY OFFICIAL";
+    display: inline-block;
+    color: #f5f3ff;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -.045em;
+    background: linear-gradient(100deg,#fff 8%,#c4b5fd 55%,#67e8f9);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+nav, header, .navbar, .NavigationBar, [class*="NavigationBar"], [class*="navigation-bar"] {
+    color: #f5f3ff !important;
+    background: rgba(13,15,27,.97) !important;
+    border-color: var(--wanzy-stroke) !important;
+    box-shadow: 0 10px 35px rgba(0,0,0,.35), inset 0 -1px rgba(167,139,250,.12) !important;
+    backdrop-filter: blur(18px);
+}
+nav a, header a, .navbar a, [class*="NavigationBar"] a {
+    color: #b8b5cc !important;
+}
+nav a:hover, header a:hover, .navbar a:hover, [class*="NavigationBar"] a:hover {
+    color: #e9d5ff !important;
+}
+nav svg, header svg, .navbar svg, [class*="NavigationBar"] svg {
+    color: #c4b5fd !important;
+}
+
+/* Tailwind utility classes used by stock panel cards and server rows. */
+#app [class~="bg-neutral-900"], #app [class~="bg-neutral-800"],
+#app [class~="bg-neutral-700"], #app [class~="bg-neutral-600"],
+#app [class~="bg-gray-900"], #app [class~="bg-gray-800"],
+#app [class~="bg-gray-700"], #app [class~="bg-gray-600"],
+#app [class*="bg-[#"], #app [class*="bg-neutral-"], #app [class*="bg-gray-"] {
+    background-color: #15182a !important;
+    color: #f1efff !important;
+}
+#app [class~="bg-neutral-700"], #app [class~="bg-gray-700"],
+#app [class*="bg-neutral-700"], #app [class*="bg-gray-700"] {
+    background: linear-gradient(135deg,#1a1e32 0%,#111524 100%) !important;
+    border: 1px solid rgba(167,139,250,.2) !important;
+    box-shadow: 0 12px 30px rgba(0,0,0,.22), inset 0 1px rgba(255,255,255,.025) !important;
+}
+#app [class*="hover:bg-gray-"]:hover, #app [class*="hover:bg-neutral-"]:hover {
+    background: #22213a !important;
+}
+
+/* Server cards: no more stock slate-gray blocks. */
+#app a[class*="group"], #app a[class*="rounded"][class*="bg-"],
+#app [class*="ServerRow"], #app [class*="server-row"],
+#app [class*="ServerCard"], #app [class*="server-card"] {
+    color: #f5f3ff !important;
+}
+#app a[class*="group"][class*="bg-"], #app a[class*="rounded"][class*="bg-"] {
+    background: linear-gradient(125deg,rgba(26,29,48,.98),rgba(14,17,29,.98)) !important;
+    border: 1px solid rgba(167,139,250,.22) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 12px 30px rgba(0,0,0,.22) !important;
+}
+#app a[class*="group"]:hover, #app a[class*="rounded"][class*="bg-"]:hover {
+    border-color: rgba(103,232,249,.45) !important;
+    box-shadow: 0 14px 34px rgba(124,58,237,.16) !important;
+    transform: translateY(-2px);
+}
+#app [class*="text-neutral-"], #app [class*="text-gray-"], #app [class*="text-slate-"] {
+    color: #aaa8bf !important;
+}
+#app [class*="text-white"], #app [class*="text-neutral-100"], #app [class*="text-gray-100"],
+#app [class*="text-neutral-200"], #app [class*="text-gray-200"] {
+    color: #f5f3ff !important;
+}
+#app [class*="border-neutral-"], #app [class*="border-gray-"], #app [class*="border-slate-"] {
+    border-color: rgba(167,139,250,.18) !important;
+}
+
+/* Active navigation and server tabs become violet/cyan. */
+#app [role="tablist"], #app [role="tab"], #app [class*="NavigationBar"] + div {
+    background-color: #101321 !important;
+    border-color: var(--wanzy-stroke) !important;
+}
+#app [role="tab"][aria-selected="true"], #app [aria-current="page"] {
+    color: #e9d5ff !important;
+    border-color: #a78bfa !important;
+    box-shadow: inset 0 -2px #a78bfa !important;
+}
+#app a[class*="text-primary"], #app button[class*="text-primary"] { color: #c4b5fd !important; }
+
+/* Inputs, select menus, command bar and file editor. */
+#app input, #app textarea, #app select, #app [role="combobox"] {
+    color: #f5f3ff !important;
+    background: #0e1220 !important;
+    border: 1px solid rgba(167,139,250,.24) !important;
+    border-radius: 10px !important;
+}
+#app input::placeholder, #app textarea::placeholder { color: #77758f !important; }
+#app input:focus, #app textarea:focus, #app select:focus {
+    border-color: rgba(103,232,249,.72) !important;
+    box-shadow: 0 0 0 3px rgba(34,211,238,.1) !important;
+}
+
+/* Buttons use the Wanzy gradient language without changing their handlers. */
+#app button, #app .btn {
+    border-radius: 10px !important;
+    transition: background .18s ease, border-color .18s ease, transform .18s ease, box-shadow .18s ease !important;
+}
+#app button[class*="bg-primary"], #app button[class*="bg-blue"],
+#app .btn-primary {
+    color: #fff !important;
+    background: linear-gradient(110deg,#7251c7,#a34bc7) !important;
+    border: 1px solid rgba(196,181,253,.35) !important;
+}
+#app button[class*="bg-green"], #app button[class*="bg-emerald"], #app .btn-success {
+    color: #eafff7 !important;
+    background: linear-gradient(110deg,#087d68,#159b83) !important;
+}
+#app button[class*="bg-red"], #app button[class*="bg-rose"], #app .btn-danger {
+    color: #fff1f5 !important;
+    background: linear-gradient(110deg,#9d315c,#cf4774) !important;
+}
+#app button[class*="bg-yellow"], #app button[class*="bg-amber"], #app .btn-warning {
+    color: #fff !important;
+    background: linear-gradient(110deg,#7355b7,#9b70e8) !important;
+}
+
+/* Console, terminal, editor, meters, tables and popovers. */
+#app .xterm, #app .xterm-screen, #app .xterm-viewport, #app .CodeMirror, #app .monaco-editor {
+    background: #080b14 !important;
+}
+#app .xterm {
+    border: 1px solid rgba(103,232,249,.18) !important;
+    border-radius: 14px !important;
+    box-shadow: inset 0 0 38px rgba(34,211,238,.035), 0 12px 32px rgba(0,0,0,.28) !important;
+}
+#app [role="progressbar"], #app .progress {
+    background: #27233d !important;
+    border-radius: 99px !important;
+    overflow: hidden;
+}
+#app [role="progressbar"] > div, #app .progress-bar {
+    background: linear-gradient(90deg,#8058dc,#d946ef 55%,#67e8f9) !important;
+    border-radius: 99px !important;
+}
+#app table, #app th, #app td { border-color: rgba(167,139,250,.15) !important; }
+#app thead, #app th { background: #17172a !important; color: #d8c7ff !important; }
+#app tbody tr { background: #101321 !important; }
+#app tbody tr:nth-child(even) { background: #14182a !important; }
+#app tbody tr:hover { background: #201d38 !important; }
+#app [role="dialog"], #app [role="menu"], #app [data-radix-popper-content-wrapper] > div {
+    color: #f5f3ff !important;
+    background: #15182a !important;
+    border: 1px solid var(--wanzy-stroke) !important;
+    box-shadow: 0 18px 48px rgba(0,0,0,.42) !important;
+}
+#app a:focus-visible, #app button:focus-visible {
+    outline: 2px solid #67e8f9 !important;
+    outline-offset: 3px;
+}
+
+/* Stock Pterodactyl progress stripes and blue accents get recolored. */
+#app [class*="bg-blue-"], #app [class*="bg-indigo-"] {
+    background-color: #7756c7 !important;
+}
+#app [class*="text-blue-"], #app [class*="text-indigo-"] {
+    color: #c4b5fd !important;
+}
+#app [class*="border-blue-"], #app [class*="border-indigo-"] {
+    border-color: rgba(167,139,250,.48) !important;
+}
+@media (max-width: 700px) {
+    nav, header, .navbar, .NavigationBar, [class*="NavigationBar"] {
+        min-height: 62px;
+    }
+    #app a[class*="group"][class*="bg-"], #app a[class*="rounded"][class*="bg-"] {
+        border-radius: 13px !important;
+    }
+}
