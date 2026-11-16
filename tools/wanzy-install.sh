@@ -41,7 +41,13 @@ main(){
   command -v curl >/dev/null || die "curl belum tersedia."
   command -v python3 >/dev/null || die "python3 belum tersedia."
   command -v php >/dev/null || die "PHP belum tersedia."
-  command -v yarn >/dev/null || die "Yarn belum tersedia."
+  # Pterodactyl frontend uses Yarn Classic (1.x). Bootstrap it if missing.
+  if ! command -v yarn >/dev/null 2>&1; then
+    command -v npm >/dev/null 2>&1 || die "Yarn tidak ada dan npm juga tidak ditemukan. Pasang Node.js/npm terlebih dahulu."
+    say "Yarn belum tersedia. Memasang Yarn Classic 1.22.22..."
+    npm install --global yarn@1.22.22 || die "Gagal memasang Yarn. Periksa koneksi VPS dan konfigurasi npm."
+  fi
+  command -v yarn >/dev/null 2>&1 || die "Yarn masih belum terdeteksi setelah instalasi."
   [[ -f "$PANEL_DIR/artisan" && -f "$PANEL_DIR/resources/scripts/components/App.tsx" && -f "$PANEL_DIR/resources/scripts/components/dashboard/DashboardContainer.tsx" ]] || die "Struktur panel tidak cocok: $PANEL_DIR"
   banner
   printf '  Tema: %bWANZY OFFICIAL%b\n' "$PURPLE" "$RESET"
@@ -99,8 +105,15 @@ PY
     rollback
     die "Patch source tidak cocok. File lama sudah dipulihkan."
   fi
-  say "Membangun frontend Pterodactyl..."
   cd "$PANEL_DIR"
+  if [[ ! -d node_modules ]]; then
+    say "Dependency frontend belum ada. Menjalankan yarn install..."
+    if ! yarn install --network-timeout 1000000; then
+      rollback
+      die "Instalasi dependency gagal. File sumber dikembalikan. Backup: $BACKUP_DIR"
+    fi
+  fi
+  say "Membangun frontend Pterodactyl..."
   if ! yarn build:production; then
     rollback
     die "Build gagal. File sumber dan asset lama dikembalikan. Backup: $BACKUP_DIR"
