@@ -1,0 +1,88 @@
+/* WANZY OFFICIAL — Nerxa-inspired Pterodactyl theme */
+:root {
+    --wanzy-bg: #08090d;
+    --wanzy-surface: #10111a;
+    --wanzy-card: #131522;
+    --wanzy-card-hover: #191b2c;
+    --wanzy-border: rgba(190, 166, 255, .13);
+    --wanzy-text: #f5f3ff;
+    --wanzy-muted: #9693a8;
+    --wanzy-violet: #a78bfa;
+    --wanzy-fuchsia: #e879f9;
+    --wanzy-cyan: #67e8f9;
+    --wanzy-emerald: #6ee7b7;
+}
+html, body, #app { background: var(--wanzy-bg) !important; color: var(--wanzy-text); }
+body {
+    background-image: radial-gradient(ellipse at 12% 0%, rgba(124,58,237,.13), transparent 38%), radial-gradient(ellipse at 92% 8%, rgba(34,211,238,.07), transparent 32%) !important;
+    background-attachment: fixed;
+}
+.wanzy-hero {
+    position: relative; isolation: isolate; display: flex; align-items: center; justify-content: space-between;
+    min-height: 238px; margin: 0 0 26px; padding: 34px 38px 42px; overflow: hidden;
+    border: 1px solid rgba(167,139,250,.2); border-radius: 22px;
+    background: radial-gradient(ellipse at 76% 48%, rgba(124,58,237,.19), transparent 38%), linear-gradient(120deg, #11121f, #090c16 62%, #0b1620);
+    box-shadow: 0 24px 70px rgba(0,0,0,.24), inset 0 1px rgba(255,255,255,.045);
+}
+.wanzy-hero:before {
+    position: absolute; z-index: -1; inset: 0; content: ''; opacity: .35;
+    background-image: radial-gradient(circle, rgba(255,255,255,.8) 0 1px, transparent 1.6px), radial-gradient(circle, rgba(167,139,250,.9) 0 1px, transparent 1.8px);
+    background-size: 82px 76px, 137px 119px; background-position: 12px 8px, 42px 28px;
+    mask-image: linear-gradient(90deg, transparent, #000 55%, #000);
+    animation: wanzy-stars 18s linear infinite;
+}
+.wanzy-hero-stars { position: absolute; z-index: -1; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(8,9,13,.18), transparent 62%); }
+.wanzy-hero-copy { position: relative; z-index: 2; max-width: 620px; }
+.wanzy-eyebrow { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 15px; color: #c4b5fd; font-size: 10px; font-weight: 800; letter-spacing: .2em; }
+.wanzy-live-dot, .wanzy-hero-meta i { width: 7px; height: 7px; border-radius: 50%; background: var(--wanzy-emerald); box-shadow: 0 0 14px rgba(110,231,183,.9); }
+.wanzy-hero h1 { margin: 0; color: #fff; font-size: clamp(30px,4.2vw,48px); font-weight: 900; letter-spacing: -.055em; line-height: 1; }
+.wanzy-hero h1 span { color: transparent; background: linear-gradient(100deg,#c4b5fd,#e879f9 52%,#67e8f9); background-clip: text; -webkit-background-clip: text; }
+.wanzy-hero-copy > p { margin: 14px 0 0; color: rgba(226,222,242,.72); font-size: 14px; }
+.wanzy-hero-meta { display: flex; align-items: center; gap: 11px; margin-top: 23px; color: #aaa6bc; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.wanzy-hero-meta span:first-child { display: inline-flex; align-items: center; gap: 8px; }
+.wanzy-hero-meta i { display: inline-block; width: 6px; height: 6px; }
+.wanzy-meta-separator { color: var(--wanzy-fuchsia); }
+.wanzy-hero-bottom { position: absolute; right: 28px; bottom: 17px; left: 28px; display: flex; justify-content: space-between; color: rgba(196,181,253,.5); font-size: 8px; font-weight: 800; letter-spacing: .2em; }
+.wanzy-hero-bottom b { color: var(--wanzy-cyan); }
+
+/* Lightweight CSS 3D centerpiece: no additional runtime dependency. */
+.wanzy-orb-scene { position: absolute; top: 50%; right: 9%; width: 220px; height: 190px; transform: translateY(-50%); perspective: 700px; }
+.wanzy-orb-glow { position: absolute; top: 28%; left: 27%; width: 48%; height: 48%; border-radius: 50%; background: #8b5cf6; filter: blur(42px); opacity: .34; animation: wanzy-pulse 5s ease-in-out infinite; }
+.wanzy-crystal { position: absolute; top: 27%; left: 37%; width: 66px; height: 66px; transform-style: preserve-3d; transform: rotateX(58deg) rotateZ(45deg); animation: wanzy-crystal-float 8s ease-in-out infinite; }
+.wanzy-crystal-face { position: absolute; inset: 0; border: 1px solid rgba(221,214,254,.85); background: linear-gradient(135deg,rgba(196,181,253,.58),rgba(124,58,237,.12) 58%,rgba(103,232,249,.25)); box-shadow: inset 0 0 22px rgba(196,181,253,.28), 0 0 28px rgba(139,92,246,.2); backdrop-filter: blur(3px); }
+.wanzy-crystal-front { transform: translateZ(25px); }
+.wanzy-crystal-back { transform: rotateY(180deg) translateZ(25px); opacity: .55; }
+.wanzy-crystal-core { position: absolute; inset: 17px; transform: translateZ(27px) rotate(45deg); border: 1px solid rgba(103,232,249,.8); background: linear-gradient(135deg,rgba(103,232,249,.42),rgba(167,139,250,.1)); box-shadow: 0 0 24px rgba(103,232,249,.45); }
+.wanzy-orbit { position: absolute; top: 23%; left: 10%; width: 82%; height: 54%; border: 1px solid rgba(196,181,253,.45); border-radius: 50%; transform: rotate(-25deg); box-shadow: 0 0 15px rgba(139,92,246,.12); }
+.wanzy-orbit-two { transform: rotate(58deg); border-color: rgba(103,232,249,.42); }
+.wanzy-orbit-three { top: 33%; left: 19%; width: 66%; height: 36%; transform: rotate(12deg); border-style: dashed; opacity: .55; }
+.wanzy-star { position: absolute; color: #e9d5ff; text-shadow: 0 0 14px #a78bfa; animation: wanzy-twinkle 3s ease-in-out infinite; }
+.wanzy-star-one { top: 12%; left: 17%; font-size: 18px; }
+.wanzy-star-two { right: 12%; top: 26%; color: var(--wanzy-cyan); font-size: 23px; animation-delay: .8s; }
+.wanzy-star-three { bottom: 12%; left: 33%; color: var(--wanzy-fuchsia); font-size: 13px; animation-delay: 1.4s; }
+@keyframes wanzy-stars { to { background-position: 94px 76px, 179px 119px; } }
+@keyframes wanzy-pulse { 0%,100% { opacity: .24; transform: scale(.88); } 50% { opacity: .48; transform: scale(1.12); } }
+@keyframes wanzy-crystal-float { 0%,100% { transform: translateY(0) rotateX(58deg) rotateZ(45deg); } 50% { transform: translateY(-12px) rotateX(68deg) rotateZ(75deg); } }
+@keyframes wanzy-twinkle { 0%,100% { opacity: .5; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.18); } }
+
+/* Global panel polish */
+input, textarea, select { color: #f5f3ff !important; background: rgba(15,16,27,.88) !important; border-color: rgba(167,139,250,.2) !important; }
+input:focus, textarea:focus, select:focus { border-color: rgba(167,139,250,.7) !important; box-shadow: 0 0 0 2px rgba(139,92,246,.13) !important; }
+a:hover { color: #c4b5fd; }
+hr { border-color: var(--wanzy-border); }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #090a10; }
+::-webkit-scrollbar-thumb { border: 2px solid #090a10; border-radius: 99px; background: #39304f; }
+::-webkit-scrollbar-thumb:hover { background: #7256a8; }
+@media (max-width: 700px) {
+    .wanzy-hero { min-height: 218px; padding: 27px 22px 40px; }
+    .wanzy-hero-copy { max-width: 100%; }
+    .wanzy-hero h1 { max-width: 270px; font-size: 34px; line-height: 1.04; }
+    .wanzy-hero-copy > p { max-width: 230px; font-size: 12px; }
+    .wanzy-hero-meta { flex-wrap: wrap; max-width: 230px; font-size: 8px; }
+    .wanzy-orb-scene { top: 52%; right: -65px; width: 185px; height: 160px; opacity: .72; }
+    .wanzy-hero-bottom { right: 18px; left: 18px; font-size: 7px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .wanzy-hero:before, .wanzy-orb-glow, .wanzy-crystal, .wanzy-star { animation: none !important; }
+}
